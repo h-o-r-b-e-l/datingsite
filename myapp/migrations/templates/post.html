@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>post</title>
+    <style>
+        .pos {
+            margin-left: 37%;
+            position: center;
+            background-color: rgb(100, 160, 112);
+            width: 400px;
+            height: 400px;
+            text-align: left;
+            font-family: Arial;
+            border-radius: 5px;
+        }
+        .pos p{
+            margin-left: 20px;
+        }
+        textarea {
+            margin-left: 20px;
+        }
+        button {
+            margin-left: 45%;
+        }
+        h2 {
+            position: center;
+            text-align: center;
+            font-family: Arial;
+            font-weight: 100;
+        }
+        .button {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            font-family: Arial;
+            font-weight: 200;
+            margin-left: 48%;
+            background-color: #9874a8;
+            border-radius: 5px;
+            color: black;
+            width: 75px;
+            margin-top: 50px;
+        }
+
+            .button:hover {
+                background-color: #68517e;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <form action="{% url 'reptiloid:Post' %}" method="post">
+        {% csrf_token %}
+        <div class="pos">
+            <h2>Registration</h2>
+            <p>It is privite info<input type="checkbox" name="is_public" value="1" /><br /></p>
+            <p>It is:</p>
+            <p>Text<input type="radio" name="type" checked value="TE" /><br /></p>
+            <p>Photo<input type="radio" name="type" value="PH" /><br /></p>
+            <textarea name="data" required placeholder="Leave your personal data here to we could send it to Nibiru" cols="30" rows="10"></textarea><br />
+            <button type="submit">Send</button>
+        </div>
+        <div class="button" onclick="location.href = '{{"/reptiloid"}}';">Back <br /></div><br />
+    </form>
+</body>
+</html>

@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>edit {{request.user.username}}</title>
+
+    <style>
+        body {
+            display: flex;
+            background-size: cover;
+            flex-direction: row;
+            align-content: center;
+            justify-content: center;
+        }
+
+        .reg {
+            display: flex;
+            position: center;
+            background-color: #e4e3d3;
+            width: 70%;
+            text-align: center;
+            border-radius: 5px;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            font-family: Arial;
+        }
+
+
+        .name {
+            color: #68517e;
+        }
+
+        .button {
+            font-family: Arial;
+            font-weight: 200;
+            font-size: 16px;
+            background-color: #9874a8;
+            border-radius: 5px;
+            color: black;
+            border: unset;
+            width: 10%;
+        }
+
+            .button:hover {
+                background-color: #68517e;
+                cursor: pointer;
+            }
+
+
+        h2 {
+            position: center;
+            text-align: center;
+            font-family: Arial;
+            font-weight: 100;
+        }
+        span {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="reg">
+        <form method="post" action="" enctype="multipart/form-data">
+
+            <h2>Profile editing</h2>
+            {% csrf_token %}
+            <p>Username: <input type="text" name="username" maxlength="150" placeholder="{{request.user.username}}" /></p>
+            <br />
+            {% if user.profile_pic %}
+            <span>
+                <p>Photo: </p>
+                <img width="40%" src="{{user.profile_pic.url}}" />
+            </span>
+            <br />
+            {% endif %}
+            <span><input type="file" name="profile_pic" accept="image/*"></span>
+            <br />
+            {{form.errors}}
+            <button type="submit" class="button">Send</button>
+        </form>
+        <br />
+        <form>
+            <button type="button" class="button" onclick="location.href = '{{"/profile"}}';">Back</button><br /><br />
+        </form>
+    </div>         
+</body>
+</html>
